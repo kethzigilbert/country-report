@@ -4,8 +4,9 @@ import Layout from '../src/components/Layouts/layout';
 import { ThemeContext } from '../src/components/theme/theme';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React, { useState, useMemo } from 'react';
-import {  Paper } from "@mui/material";
+import {  CssBaseline, Paper, ScopedCssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
+
 
 function MyApp({ Component, pageProps }) {
   const [mode, setMode] = useState('light');
@@ -30,9 +31,19 @@ function MyApp({ Component, pageProps }) {
         main: '#191b1c',
 
       },
-
-    }
-  });
+      overrides: {
+        MuiButton: {
+         
+            root: {
+            textTransform: 'none'
+            }
+          
+          }
+         
+        },
+      }
+      
+    });
 
   const themeDark = createTheme({
     palette: {
@@ -47,12 +58,23 @@ function MyApp({ Component, pageProps }) {
       },
       text: {
         primary: "#ffffff"
-      }
+      },
+      
+      overrides: {
+        MuiButton: {
+         
+            root: {
+            textTransform: 'none'
+            }
+          
+          }
+         
+        },
     }
   });
   return <ThemeContext.Provider value={colorMode}>
     <ThemeProvider theme={mode === 'light' ? themeLight : themeDark}>
-      <Paper sx={{ boxShadow: "none", border: "none", backgroundColor: 'background.default' }} style={{ height: '100%' }}>
+      <Paper sx={{ boxShadow: "none", border: "none", backgroundColor: 'background.default' }} >
 
 
         <Layout>
@@ -60,7 +82,7 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </QueryClientProvider>
         </Layout>
-
+       
       </Paper>
     </ThemeProvider>
   </ThemeContext.Provider>

@@ -5,7 +5,8 @@ import { useQuery } from 'react-query';
 import { CountryService } from '../../src/api';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Paper, Box } from '@mui/material';
+
 
 
 const CountryDetail = (props) => {
@@ -84,11 +85,12 @@ const CountryDetail = (props) => {
     }, [countryAttributesList])
     return (
 
-        <div className='d-flex flex-column  flex-wrap w-100 mt-4 px-5 '>
+        <div className='d-flex flex-column full-height  flex-wrap w-100 mt-4 px-5 '>
             <div className='col-2'>
-                <Button variant="outlined" color="success" onClick={() => router.back()} startIcon={<ArrowBackIcon />}>
+                <Button variant="outlined"  onClick={() => router.back()} className = "text-transform-none" startIcon={<ArrowBackIcon />}>
                     Back
                 </Button></div>
+        <Box style={{height:"100vh"}} >
             <div className='container mt-5 ms-0 ps-0 align-items-center'>
                 <div className='row'>
                     <div className='col-12 col-sm-12 col-md-6 col-lg-6'>
@@ -104,7 +106,7 @@ const CountryDetail = (props) => {
                 </div>
 
             </div>
-
+            </Box>
         </div>
     )
 }
