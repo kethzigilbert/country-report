@@ -23,7 +23,7 @@ const Header = (props) => {
         </Typography>
 
 
-        <Button className = "text-transform-none" onClick={colorMode.toggleTheme}  startIcon={theme.palette.mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />} > {`${theme.palette.mode === 'light' ? 'Dark' : 'Light'} Mode`}</Button>
+        <Button className = "text-transform-none"  color="inherit" onClick={colorMode.toggleTheme}  startIcon={theme.palette.mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />} > {`${theme.palette.mode === 'light' ? 'Dark' : 'Light'} Mode`}</Button>
 
       </div>
 

@@ -87,7 +87,7 @@ const CountryDetail = (props) => {
 
         <div className='d-flex flex-column full-height  flex-wrap w-100 mt-4 px-5 '>
             <div className='col-2'>
-                <Button variant="outlined"  onClick={() => router.back()} className = "text-transform-none" startIcon={<ArrowBackIcon />}>
+                <Button variant="outlined" color="inherit" onClick={() => router.back()} className = "text-transform-none" startIcon={<ArrowBackIcon />}>
                     Back
                 </Button></div>
         <Box style={{height:"100vh"}} >

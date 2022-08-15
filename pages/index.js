@@ -5,7 +5,7 @@ import Countries from '../src/components/Country'
 
 export default function Home() {
   return (
-    <Box>
+   <>
       <Head>
         <title>Countries Report</title>
 
@@ -19,6 +19,6 @@ export default function Home() {
       </main>
 
 
-    </Box>
+    </>
   )
 }

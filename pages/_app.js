@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }) {
         main: '#191b1c',
 
       },
+    },
       overrides: {
         MuiButton: {
          
@@ -41,7 +42,7 @@ function MyApp({ Component, pageProps }) {
           }
          
         },
-      }
+      
       
     });
 
@@ -52,6 +53,9 @@ function MyApp({ Component, pageProps }) {
         main: "#ffffff",
         dark: "#ffffff"
       },
+      info :{
+        main: "#01579b"
+      },
       background: {
         default: "#212c36",
         paper: "#2c3743"
@@ -59,18 +63,17 @@ function MyApp({ Component, pageProps }) {
       text: {
         primary: "#ffffff"
       },
+      },
       
       overrides: {
         MuiButton: {
          
-            root: {
-            textTransform: 'none'
-            }
+        
           
           }
          
         },
-    }
+    
   });
   return <ThemeContext.Provider value={colorMode}>
     <ThemeProvider theme={mode === 'light' ? themeLight : themeDark}>
