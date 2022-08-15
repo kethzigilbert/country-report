@@ -4,7 +4,7 @@ This Project allows you to view list of countries and its details. You can
 * click on a country to see more detailed information on a separate page
 * toggle the color scheme between light and dark mode
 
-
+This Project is deployed to https://country-report.vercel.app/
 ## Getting Started
 First install the required modules 
 
