@@ -17,7 +17,7 @@ const debouncedSearchTerm = useDebounced(searchTerm, 500);
         ["ALL_COUNTRIES"],
         async () => {
           const response = await CountryService.getAllCountries()
-          return response.json()
+          return response?.data
         }
         ,
         {
@@ -28,18 +28,20 @@ const debouncedSearchTerm = useDebounced(searchTerm, 500);
       );
 
 
-const { data : searchResults, isLoading :isSearching , isError : isSearchError } = useQuery(
+const { data : searchResults=[], isLoading :isSearching , isError : isSearchError ,isFetched } = useQuery(
   ['COUNTRY_SEARCH', debouncedSearchTerm], 
   async() => {
     const response = await CountryService.searchCountry(searchTerm)
-    return response.json()
+    return response?.data
   },
-  { enabled: Boolean(debouncedSearchTerm) ,refetchOnWindowFocus: false}
+  { enabled: Boolean(debouncedSearchTerm) ,refetchOnWindowFocus: false, retry:false}
 )
 
 const countries = isEmpty(searchResults) ? allCountries : searchResults
 const isError = isSearchError || isCountryError
 const isInProgress = isLoading || isSearching
+const searchNotFound = !isEmpty(debouncedSearchTerm) && isSearchError && isFetched
+
 return(
 
   <div className='mt-5  ps-0 ms-5'>
@@ -66,7 +68,8 @@ return(
           
           />
     {isInProgress && <div className='d-flex flex-row justify-content-center mt-5 '><CircularProgress /></div>}
-    {isError && <div className='d-flex flex-row mt-5  '> <ErrorAlert severity="error">Unable to retreive countries at the moment. Please try again later</ErrorAlert> </div>}
+    {searchNotFound  &&<div className='d-flex flex-row mt-5  '> <ErrorAlert severity="info">No results found</ErrorAlert> </div> }
+    {isError && !searchNotFound && <div className='d-flex flex-row mt-5  '> <ErrorAlert severity="error">Unable to retreive countries at the moment. Please try again later</ErrorAlert> </div>}
     {!isInProgress && !isError && <CountryList countries={countries} ></CountryList>}
     </div>
   

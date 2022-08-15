@@ -1,8 +1,8 @@
-
+import axios from "axios";
 export const httpService = (url , method , data) => {
 
  
-   return fetch(url)
+   return axios(url)
 
    
 }

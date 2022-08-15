@@ -4,8 +4,10 @@ import Layout from '../src/components/Layouts/layout';
 import { ThemeContext } from '../src/components/theme/theme';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React, { useState, useMemo } from 'react';
-import {  CssBaseline, Paper, ScopedCssBaseline } from "@mui/material";
+import {  Box,  ScopedCssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Head from 'next/head';
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -75,9 +77,20 @@ function MyApp({ Component, pageProps }) {
         },
     
   });
-  return <ThemeContext.Provider value={colorMode}>
+  return <>
+  <Head>
+  <title>Countries Report</title>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</Head>
+
+<main >
+  <ThemeContext.Provider value={colorMode}>
     <ThemeProvider theme={mode === 'light' ? themeLight : themeDark}>
-      <Paper sx={{ boxShadow: "none", border: "none", backgroundColor: 'background.default' }} >
+      <ScopedCssBaseline sx={{ height : 'inherit' ,backgroundColor: 'background.default' }}>
+      <Box sx={{ boxShadow: "none", border: "none", backgroundColor: 'background.default' }} >
 
 
         <Layout>
@@ -86,10 +99,12 @@ function MyApp({ Component, pageProps }) {
           </QueryClientProvider>
         </Layout>
        
-      </Paper>
+      </Box>
+      </ScopedCssBaseline>
     </ThemeProvider>
   </ThemeContext.Provider>
-
+</main>
+</>
 }
 
 export default MyApp

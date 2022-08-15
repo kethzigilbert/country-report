@@ -16,9 +16,9 @@ const CountryDetail = (props) => {
         ['COUNTRY_SEARCH', name],
         async () => {
             const response = await CountryService.getCountryDetails(name)
-            return response.json()
+            return response?.data
         },
-        { enabled: Boolean(name), refetchOnWindowFocus: false }
+        { enabled: Boolean(name), refetchOnWindowFocus: false,retry:false }
     )
     const country = result?.[0] || {}
     const { flag, capital, nativeName, population = '', languages = [], region, borders = [], currencies = [], subregion, topLevelDomain = [] } = country
