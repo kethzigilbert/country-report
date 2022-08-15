@@ -1,3 +1,3 @@
 
-import CountryService from "./country"
+import CountryService from "./CountryService"
 export  {CountryService}
